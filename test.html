@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <ul id="ul"></ul>
+    <script type="text/javascript">
+      const _createPage = (allItem, pageItem) => {
+        // 补全代码
+        let num = Math.ceil(allItem / pageItem);
+        let oUl = document.getElementById("ul");
+        for (let i = 1; i <= num; i++) {
+          let oLi = document.createElement("li");
+          oLi.innerHTML = i;
+          oUl.appendChild(oLi);
+        }
+      };
+    </script>
+  </body>
+</html>
