@@ -81,3 +81,67 @@
   用法： Object.assign(target, source1, source2); 所以 copyObj = Object.assign({}, obj); 这段代码将会把 obj 中的一级属性都拷贝到{}中，然后将其返回赋给 copyObj
 
   3. ES6 拓展运算符
+
+  **扩展运算符（...）用于取出参数对象的所有可遍历属性，拷贝到当前对象之中。**
+
+  **注意**：实际上，无论是使用扩展运算符(...)还是解构赋值，对于引用类型都是浅拷贝。所以在使用 splice()、concat()、...对数组拷贝时，只有当数组内部属性值不是引用类型是，才能实现深拷贝。对多层嵌套对象，也即是存在，很遗憾，上面三种方法，都会失败.
+
+###拷贝所有层级
+
+1. 不仅拷贝第一层级，还能够拷贝数组或对象所有层级的各项值。
+2. 不是单独针对数组或对象，而是能够通用于数组，对象和其他复杂的 JSON 形式的对象。
+
+**JSON.parse(JSON.stringify(XXXX))**
+
+```
+var array = [{ name: { fname: "jim", lname: "green" } }, { name: "james" }];
+
+var newObj = JSON.parse(JSON.stringify(array));
+// var newObj = [...array];
+
+console.log(newObj);
+newObj[0].name.fname = "陈冠希";
+console.log(newObj);
+console.log(array);
+
+// 输出
+[ { name: { fname: 'jim', lname: 'green' } }, { name: 'james' } ]
+[ { name: { fname: '陈冠希', lname: 'green' } }, { name: 'james' } ]
+[ { name: { fname: 'jim', lname: 'green' } }, { name: 'james' } ]
+```
+
+JSON.parse() 方法用于将一个 JSON 字符串转换为对象--（反序列化）
+
+JSON.stringify() 方法是将一个 JavaScript 值(对象或者数组)转换为一个 JSON 字符串--(序列化）
+
+序列化的缺点：
+
+不支持基本数据类型的 undefined，序列化后将其省略
+不支持函数
+Nan,Infinity 序列化的结果是 null
+
+###for...in 和 for...of，forEach 的区别
+
+1. for... in 特点
+
+- 遍历对象返回的对象的 key 值,遍历数组返回的数组的下标(key)。
+- for ... in 会遍历原型上的属性值
+- 遍历返回数据是乱序
+
+**总结一句: for in 循环特别适合遍历对象。**
+
+2. for... of 特点
+
+- for of 遍历的只是数组内的元素，而不包括数组的原型属性 method 和索引 name
+- for ... in 会遍历原型上的属性值
+- 遍历返回数据是乱序
+- for of 不同与 forEach, 它可以与 break、continue 和 return 配合使用,也就是说 for of 循环可以随时退出循环。
+
+**总结一句: for of 比较适合遍历数组，及其他具有遍历器的集合。**
+
+3. forEach 特点
+
+- 使用 foreach 遍历数组的话，使用 break 不能中断循环，使用 return 也不能返回到外层函数。forEach 与 break 和 return 不搭。
+- forEach()无法在所有元素都传递给调用的函数之前终止遍历
+
+for…in 循环可应用于对象的复制，不过其有一个缺点，就是会从原型属性里继承 prototype()属性。

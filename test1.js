@@ -1,10 +1,10 @@
 // 深拷贝对象
-var obj = {
-  name: "刘德华",
-  age: 12,
-};
+var array = [{ name: { fname: "jim", lname: "green" } }, { name: "james" }];
 
-var newObj = Object.assign({}, obj);
+var newObj = JSON.parse(JSON.stringify(array));
+// var newObj = [...array];
+
 console.log(newObj);
-newObj.name = "陈冠希";
+newObj[0].name.fname = "陈冠希";
 console.log(newObj);
+console.log(array);
