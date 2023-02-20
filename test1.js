@@ -1,10 +1,5 @@
-// 深拷贝对象
-var array = [{ name: { fname: "jim", lname: "green" } }, { name: "james" }];
-
-var newObj = JSON.parse(JSON.stringify(array));
-// var newObj = [...array];
-
-console.log(newObj);
-newObj[0].name.fname = "陈冠希";
-console.log(newObj);
+// 将数组最后的元素插入到数组中间
+var array = [2, 4, 3, 2, 1, 6, 7, 9];
+var ele = array.pop();
+array.splice(array.length / 2, 0, ele);
 console.log(array);

@@ -120,7 +120,7 @@ JSON.stringify() 方法是将一个 JavaScript 值(对象或者数组)转换为�
 不支持函数
 Nan,Infinity 序列化的结果是 null
 
-###for...in 和 for...of，forEach 的区别
+### for...in 和 for...of，forEach 的区别
 
 1. for... in 特点
 
@@ -145,3 +145,18 @@ Nan,Infinity 序列化的结果是 null
 - forEach()无法在所有元素都传递给调用的函数之前终止遍历
 
 for…in 循环可应用于对象的复制，不过其有一个缺点，就是会从原型属性里继承 prototype()属性。
+
+## 2. 如何将数组最后的元素插入到数组中间？
+
+```
+var array = [2, 4, 3, 2, 1, 6, 7, 9];
+var ele = array.pop();
+array.splice(array.length / 2, 0, ele);
+console.log(array);
+
+// 输出
+[
+  2, 4, 3, 9,
+  2, 1, 6, 7
+]
+```
