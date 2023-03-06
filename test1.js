@@ -1,5 +1,16 @@
-// 将数组最后的元素插入到数组中间
-var array = [2, 4, 3, 2, 1, 6, 7, 9];
-var ele = array.pop();
-array.splice(array.length / 2, 0, ele);
-console.log(array);
+/**
+ * @param {string} a
+ * @param {string} b
+ * @return {string}
+ */
+var addBinary = function (a, b) {
+  //   var binA = parseInt(a, 2);
+  //   var binB = parseInt(b, 2);
+  //   var res = binA + binB;
+  //   return res.toString(2);
+
+  return (BigInt("0b" + a) + BigInt("0b" + b)).toString(2);
+};
+
+console.log(addBinary("11", "1"));
+console.log(addBinary("1010", "1011"));
